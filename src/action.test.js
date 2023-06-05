@@ -1,12 +1,7 @@
 import { place, rotate, move } from './action';
 import { axisIsValid, facingIsValid } from './validation';
 import { setError, setCommand } from './store/InfoSlice';
-import {
-  placeRobot,
-  rotateRobot,
-  moveRobot,
-  reportRobot,
-} from './store/RobotSlice';
+import { placeRobot, rotateRobot, moveRobot, reportRobot } from './store/RobotSlice';
 
 describe('place', () => {
   const dispatchMock = jest.fn();
@@ -36,7 +31,7 @@ describe('place', () => {
     place(dispatchMock, inputCommand, 5, 5, ['NORTH', 'EAST', 'SOUTH', 'WEST']);
     expect(dispatchMock).toHaveBeenCalledWith(
       setError({
-        error: 'should enter X,Y,and Facing, also notice input format.',
+        error: 'should enter X,Y,and Facing, also notice input format.'
       })
     );
   });
@@ -44,12 +39,8 @@ describe('place', () => {
   it('should dispatch setCommand and placeRobot actions when input is valid', () => {
     const inputCommand = 'PLACE 1,1,NORTH';
     place(dispatchMock, inputCommand, 5, 5, ['NORTH', 'EAST', 'SOUTH', 'WEST']);
-    expect(dispatchMock).toHaveBeenCalledWith(
-      setCommand({ command: 'PLACE 1,1,NORTH' })
-    );
-    expect(dispatchMock).toHaveBeenCalledWith(
-      placeRobot({ axisX: 1, axisY: 1, facing: 'NORTH' })
-    );
+    expect(dispatchMock).toHaveBeenCalledWith(setCommand({ command: 'PLACE 1,1,NORTH' }));
+    expect(dispatchMock).toHaveBeenCalledWith(placeRobot({ axisX: 1, axisY: 1, facing: 'NORTH' }));
   });
 
   it('should dispatch setError when input is invalid', () => {
@@ -73,9 +64,7 @@ describe('rotate', () => {
     const facing = 'INVALID';
     const facingToward = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
     rotate(dispatchMock, direction, facing, facingToward);
-    expect(dispatchMock).toHaveBeenCalledWith(
-      setError({ error: 'invalid facing' })
-    );
+    expect(dispatchMock).toHaveBeenCalledWith(setError({ error: 'invalid facing' }));
   });
 
   it('should dispatch setCommand and rotateRobot actions when rotating left', () => {
@@ -101,9 +90,7 @@ describe('rotate', () => {
     const facing = 'NORTH';
     const facingToward = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
     rotate(dispatchMock, direction, facing, facingToward);
-    expect(dispatchMock).toHaveBeenCalledWith(
-      setError({ error: 'Wrong direction command' })
-    );
+    expect(dispatchMock).toHaveBeenCalledWith(setError({ error: 'Wrong direction command' }));
   });
 });
 
@@ -123,7 +110,7 @@ describe('move', () => {
     move(dispatchMock, facing, axisX, axisY, xLength, yLength);
     expect(dispatchMock).toHaveBeenCalledWith(
       setError({
-        error: 'No facing data could be found. Place the Pacman first.',
+        error: 'No facing data could be found. Place the Pacman first.'
       })
     );
   });
@@ -136,9 +123,7 @@ describe('move', () => {
     const yLength = 5;
     move(dispatchMock, facing, axisX, axisY, xLength, yLength);
     expect(dispatchMock).toHaveBeenCalledWith(setCommand({ command: 'MOVE' }));
-    expect(dispatchMock).toHaveBeenCalledWith(
-      moveRobot({ axisX: 1, axisY: 2 })
-    );
+    expect(dispatchMock).toHaveBeenCalledWith(moveRobot({ axisX: 1, axisY: 2 }));
   });
 
   it('should dispatch setError when axisIsValid is false', () => {
@@ -150,7 +135,7 @@ describe('move', () => {
     move(dispatchMock, facing, axisX, axisY, xLength, yLength);
     expect(dispatchMock).toHaveBeenCalledWith(
       setError({
-        error: 'cannot put Pacman out of table',
+        error: 'cannot put Pacman out of table'
       })
     );
   });
@@ -178,9 +163,7 @@ describe('axisIsValid', () => {
     const length = 'invalid';
     const result = axisIsValid(dispatchMock, axis, length);
     expect(result).toBe(false);
-    expect(dispatchMock).toHaveBeenCalledWith(
-      setError({ error: 'board length is invalid' })
-    );
+    expect(dispatchMock).toHaveBeenCalledWith(setError({ error: 'board length is invalid' }));
   });
 
   // Add more test cases for other scenarios

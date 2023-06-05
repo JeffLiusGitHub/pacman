@@ -9,7 +9,7 @@ const Loading = ({ iconJson }) => {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      animationData: iconJson,
+      animationData: iconJson
     });
     return () => {
       animation.destroy();

@@ -8,11 +8,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 createRoot(document.getElementById('root')).render(
-	<ErrorBoundary>
-		<Provider store={store}>
-			<App />
-		</Provider>
-	</ErrorBoundary>
+  <ErrorBoundary>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ErrorBoundary>
 );
 
 reportWebVitals();

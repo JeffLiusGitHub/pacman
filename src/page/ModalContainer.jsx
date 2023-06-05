@@ -15,12 +15,12 @@ const modalStyle = {
   borderRadius: '3px',
   boxShadow: 24,
   p: 4,
-  overflow: 'visible',
+  overflow: 'visible'
 };
 
 const typographyStyle = {
   mt: { sm: 0, md: 2 },
-  fontSize: { sx: '4px', sm: '15px', md: '20px' },
+  fontSize: { sx: '4px', sm: '15px', md: '20px' }
 };
 
 const ModalContainer = ({ open, handleClose }) => {
@@ -38,17 +38,13 @@ const ModalContainer = ({ open, handleClose }) => {
           component="h2"
           sx={{
             fontSize: { sx: '15px', sm: '30px', md: '40px' },
-            fontWeight: 'bold',
+            fontWeight: 'bold'
           }}
         >
           Details
         </Typography>
         {details.map((detail, index) => (
-          <Typography
-            id="modal-modal-description"
-            sx={typographyStyle}
-            key={`detail-${index}`}
-          >
+          <Typography id="modal-modal-description" sx={typographyStyle} key={`detail-${index}`}>
             {detail}
           </Typography>
         ))}

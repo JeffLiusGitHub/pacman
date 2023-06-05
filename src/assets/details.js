@@ -4,5 +4,5 @@ export const details = [
   'MOVE will move the toy robot one unit forward in the direction it is currently facing.',
   'LEFT and RIGHT will rotate the robot 90 degrees in the specified direction without changing the position of the robot.',
   'REPORT will announce the X,Y and orientation of the robot. A robot that is not on the table can choose to ignore the MOVE, LEFT, RIGHT and REPORT commands.',
-  'EG: PLACE 0,0,NORTH MOVE REPORT Output: 0,1,NORTH',
+  'EG: PLACE 0,0,NORTH MOVE REPORT Output: 0,1,NORTH'
 ];

@@ -12,7 +12,7 @@ export const axisIsValid = (dispatch, axis, length) => {
   if (axis === -1) {
     dispatch(
       setError({
-        error: 'Pacman cannot be placed or moved outside of the board',
+        error: 'Pacman cannot be placed or moved outside of the board'
       })
     );
   } else if (axis < 0 || axis > length - 1) {
@@ -28,9 +28,7 @@ export const facingIsValid = (dispatch, facing, facingToward) => {
   if (facingToward.includes(facing)) {
     return true;
   } else {
-    dispatch(
-      setError({ error: 'Place the Pacman first, Facing input is invalid.' })
-    );
+    dispatch(setError({ error: 'Place the Pacman first, Facing input is invalid.' }));
     return false;
   }
 };

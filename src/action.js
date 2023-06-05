@@ -2,13 +2,7 @@ import { axisIsValid, facingIsValid } from './validation';
 import { placeRobot, rotateRobot, moveRobot } from './store/RobotSlice';
 import { setCommand, setError } from './store/InfoSlice';
 
-export const place = (
-  dispatch,
-  inputCommand,
-  xLength,
-  yLength,
-  facingToward
-) => {
+export const place = (dispatch, inputCommand, xLength, yLength, facingToward) => {
   const inputValue = inputCommand.split(' ');
   if (inputValue[2]) {
     return dispatch(setError({ error: 'do not add space before facing' }));
@@ -20,7 +14,7 @@ export const place = (
   if (inputArray.length !== 3) {
     return dispatch(
       setError({
-        error: 'should enter X,Y,and Facing, also notice input format.',
+        error: 'should enter X,Y,and Facing, also notice input format.'
       })
     );
   }
@@ -37,7 +31,7 @@ export const place = (
   } else {
     return dispatch(
       setError({
-        error: 'the input error, please check your input',
+        error: 'the input error, please check your input'
       })
     );
   }
@@ -51,20 +45,14 @@ export const rotate = (dispatch, direction, facing, facingToward) => {
 
   const rotateLeft = () => {
     const index = facingToward.indexOf(facing);
-    const newFacing =
-      index === 0
-        ? facingToward[facingToward.length - 1]
-        : facingToward[index - 1];
+    const newFacing = index === 0 ? facingToward[facingToward.length - 1] : facingToward[index - 1];
     dispatch(setCommand({ command: 'LEFT' }));
     dispatch(rotateRobot({ facing: newFacing }));
   };
 
   const rotateRight = () => {
     const index = facingToward.indexOf(facing);
-    const newFacing =
-      index === facingToward.length - 1
-        ? facingToward[0]
-        : facingToward[index + 1];
+    const newFacing = index === facingToward.length - 1 ? facingToward[0] : facingToward[index + 1];
     dispatch(setCommand({ command: 'RIGHT' }));
     dispatch(rotateRobot({ facing: newFacing }));
   };
@@ -78,24 +66,19 @@ export const rotate = (dispatch, direction, facing, facingToward) => {
   }
 };
 
-
 export const move = (dispatch, facing, axisX, axisY, xLength, yLength) => {
   const errorMessage = {
     default: 'No facing data could be found. Place the Pacman first.',
-    boundary:
-      "you cannot move any more. It's already on the boundary of the board",
+    boundary: "you cannot move any more. It's already on the boundary of the board"
   };
 
-  const handleError = errorType => {
+  const handleError = (errorType) => {
     const error = errorMessage[errorType] || errorMessage.default;
     dispatch(setError({ error }));
   };
 
   const performMove = (newAxisX, newAxisY) => {
-    if (
-      axisIsValid(dispatch, newAxisX, xLength) &&
-      axisIsValid(dispatch, newAxisY, yLength)
-    ) {
+    if (axisIsValid(dispatch, newAxisX, xLength) && axisIsValid(dispatch, newAxisY, yLength)) {
       dispatch(setCommand({ command: 'MOVE' }));
       dispatch(moveRobot({ axisX: newAxisX, axisY: newAxisY }));
     } else {
@@ -107,7 +90,7 @@ export const move = (dispatch, facing, axisX, axisY, xLength, yLength) => {
     NORTH: () => performMove(axisX, axisY + 1),
     SOUTH: () => performMove(axisX, axisY - 1),
     EAST: () => performMove(axisX + 1, axisY),
-    WEST: () => performMove(axisX - 1, axisY),
+    WEST: () => performMove(axisX - 1, axisY)
   };
 
   const action = facingActions[facing];
@@ -117,11 +100,6 @@ export const move = (dispatch, facing, axisX, axisY, xLength, yLength) => {
     handleError('default');
   }
 };
-
-
-
-
-
 
 export const report = (axisX, axisY, facing) => {
   return { axisX, axisY, facing };

@@ -5,14 +5,14 @@ const boardSlice = createSlice({
   initialState: {
     xLength: -1,
     yLength: -1,
-    facingToward: ['NORTH', 'EAST', 'SOUTH', 'WEST'],
+    facingToward: ['NORTH', 'EAST', 'SOUTH', 'WEST']
   },
   reducers: {
     setBoard: (state, action) => {
       state.xLength = action.payload.xLength;
       state.yLength = action.payload.yLength;
-    },
-  },
+    }
+  }
 });
 
 export const { setBoard } = boardSlice.actions;

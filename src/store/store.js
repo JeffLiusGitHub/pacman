@@ -6,8 +6,8 @@ const store = configureStore({
   reducer: {
     robot: robotReducer,
     board: boardReducer,
-    info: infoReducer,
-  },
+    info: infoReducer
+  }
 });
 
 // // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -7,7 +7,7 @@ const infoSlice = createSlice({
     command: '',
     errorArray: [],
     error: '',
-    isOpen: false,
+    isOpen: false
   },
   reducers: {
     setCommand: (state, action) => {
@@ -18,13 +18,13 @@ const infoSlice = createSlice({
       state.error = action.payload.error;
       state.errorArray.push(action.payload.error);
     },
-    setOpen: state => {
+    setOpen: (state) => {
       state.isOpen = true;
     },
-    setClose: state => {
+    setClose: (state) => {
       state.isOpen = false;
-    },
-  },
+    }
+  }
 });
 
 export const { setCommand, setError, setOpen, setClose } = infoSlice.actions;

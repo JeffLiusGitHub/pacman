@@ -5,7 +5,7 @@ const robotSlice = createSlice({
   initialState: {
     axisX: -1,
     axisY: -1,
-    facing: '',
+    facing: ''
   },
   reducers: {
     placeRobot: (state, action) => {
@@ -19,10 +19,9 @@ const robotSlice = createSlice({
     moveRobot: (state, action) => {
       state.axisX = action.payload.axisX;
       state.axisY = action.payload.axisY;
-    },
-  },
+    }
+  }
 });
 
-export const { placeRobot, rotateRobot, moveRobot, reportRobot } =
-  robotSlice.actions;
+export const { placeRobot, rotateRobot, moveRobot, reportRobot } = robotSlice.actions;
 export default robotSlice.reducer;
