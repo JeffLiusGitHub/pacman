@@ -1,7 +1,7 @@
 import { place, rotate, move } from './action';
 import { axisIsValid, facingIsValid } from './validation';
 import { setError, setCommand } from './store/InfoSlice';
-import { placeRobot, rotateRobot, moveRobot, reportRobot } from './store/RobotSlice';
+import { placeRobot, rotateRobot, moveRobot } from './store/RobotSlice';
 
 describe('place', () => {
   const dispatchMock = jest.fn();
@@ -31,7 +31,7 @@ describe('place', () => {
     place(dispatchMock, inputCommand, 5, 5, ['NORTH', 'EAST', 'SOUTH', 'WEST']);
     expect(dispatchMock).toHaveBeenCalledWith(
       setError({
-        error: 'should enter X,Y,and Facing, also notice input format.'
+        error: 'should enter X,Y,and Facing, also notice input format'
       })
     );
   });
@@ -154,7 +154,7 @@ describe('axisIsValid', () => {
     const result = axisIsValid(dispatchMock, axis, length);
     expect(result).toBe(false);
     expect(dispatchMock).toHaveBeenCalledWith(
-      setError({ error: 'axis is invalid,should be a number' })
+      setError({ error: 'axis is invalid, should be a number' })
     );
   });
 

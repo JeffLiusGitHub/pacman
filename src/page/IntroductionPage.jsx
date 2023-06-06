@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { tablet, laptopXL, laptopL } from '../helper/responsive';
 const IntroContainer = styled.div`
@@ -56,8 +57,7 @@ const IntroductionPage = ({ handleOpen }) => {
           sx={{
             backgroundColor: '#FFCA27',
             fontWeight: 900
-          }}
-        >
+          }}>
           <HelpOutlineIcon sx={{ mr: '5px' }} />
           Instruction
         </Button>
@@ -65,5 +65,7 @@ const IntroductionPage = ({ handleOpen }) => {
     </IntroContainer>
   );
 };
-
+IntroductionPage.propTypes = {
+  handleOpen: PropTypes.func.isRequired
+};
 export default IntroductionPage;

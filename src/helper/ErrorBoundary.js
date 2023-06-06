@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
   }
-  static getDerivedStateFromError(error) {
+
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
-  componentDidCatch() {}
+
+  componentDidCatch(error, info) {
+    console.error(error);
+    console.error(info);
+  }
 
   render() {
     if (this.state.hasError) {
@@ -17,3 +23,7 @@ export default class ErrorBoundary extends Component {
     return this.props.children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.node.isRequired
+};

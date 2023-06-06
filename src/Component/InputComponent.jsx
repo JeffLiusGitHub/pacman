@@ -15,13 +15,13 @@ const TitleContainer = styled.div`
   justify-content: space-between;
 `;
 const Title = styled.div`
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 900;
   color: #ffca28;
   margin-bottom: 25px;
   font-family: 'Press Start 2P', cursive;
-  /* ${laptopXL({ fontSize: '25px' })}
-	${laptopL({ fontSize: '20px' })} */
+  ${laptopXL({ fontSize: '2rem' })}
+  ${laptopL({ fontSize: '1.2rem' })}
 `;
 const Input = styled.input`
   display: flex;

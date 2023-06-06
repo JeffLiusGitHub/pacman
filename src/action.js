@@ -4,34 +4,38 @@ import { setCommand, setError } from './store/InfoSlice';
 
 export const place = (dispatch, inputCommand, xLength, yLength, facingToward) => {
   const inputValue = inputCommand.split(' ');
+  const errorMessages = {
+    ERROR_ADD_SPACE: 'do not add space before facing',
+    ERROR_MISSING_AXIS: 'please also enter axis and facing',
+    ERROR_INVALID_INPUT: 'should enter X,Y,and Facing, also notice input format',
+    ERROR_INPUT: 'the input error, please check your input'
+  };
   if (inputValue[2]) {
-    return dispatch(setError({ error: 'do not add space before facing' }));
+    return dispatch(setError({ error: errorMessages.ERROR_ADD_SPACE }));
   }
   if (inputValue[1] === undefined) {
-    return dispatch(setError({ error: 'please also enter axis and facing' }));
+    return dispatch(setError({ error: errorMessages.ERROR_MISSING_AXIS }));
   }
   const inputArray = inputValue[1]?.split(',');
   if (inputArray.length !== 3) {
     return dispatch(
       setError({
-        error: 'should enter X,Y,and Facing, also notice input format.'
+        error: errorMessages.ERROR_INVALID_INPUT
       })
     );
   }
-  const axisX = parseInt(inputArray[0]?.trim());
-  const axisY = parseInt(inputArray[1]?.trim());
-  const facing = inputArray[2]?.toUpperCase().trim();
+  const [axisX, axisY, facing] = inputArray.map((item) => item?.trim().toUpperCase());
   if (
     axisIsValid(dispatch, axisX, xLength) &&
     axisIsValid(dispatch, axisY, yLength) &&
     facingIsValid(dispatch, facing, facingToward)
   ) {
     dispatch(setCommand({ command: `PLACE ${inputValue[1]}` }));
-    dispatch(placeRobot({ axisX, axisY, facing }));
+    dispatch(placeRobot({ axisX: parseInt(axisX), axisY: parseInt(axisY), facing }));
   } else {
     return dispatch(
       setError({
-        error: 'the input error, please check your input'
+        error: errorMessages.ERROR_INPUT
       })
     );
   }

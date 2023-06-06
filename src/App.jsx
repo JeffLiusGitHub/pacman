@@ -7,7 +7,7 @@ import IntroductionPage from './page/IntroductionPage';
 import ModalContainer from './page/ModalContainer';
 import OutputPage from './page/OutputPage';
 import InputComponent from './Component/InputComponent';
-import { laptopXL, tablet, laptop, laptopL } from './helper/responsive';
+import { laptopXL } from './helper/responsive';
 import MainTitlePage from './page/MainTitlePage';
 
 const WholePageLayout = styled.div`
