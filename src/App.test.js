@@ -6,7 +6,7 @@ import store from './store/store';
 import userEvent from '@testing-library/user-event';
 import 'jest-styled-components';
 import { fireEvent } from '@testing-library/react';
-//intergration text
+
 describe('No Pacman Placed', () => {
   test('should display "No facing data could be found. Place the Pacman first." when typing MOVE command and pressing enter', () => {
     render(
