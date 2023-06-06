@@ -280,3 +280,70 @@ test('button details', async () => {
     expect(displayText).toBeInTheDocument();
   });
 });
+
+describe('Test robot movements', () => {
+  test('Scenario a) - PLACE 0,0,NORTH; MOVE; REPORT - Output: 0,1,NORTH', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+    const inputValue = screen.getByTestId('command-input');
+    act(() => {
+      fireEvent.change(inputValue, { target: { value: 'PLACE 0,0,NORTH' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.change(inputValue, { target: { value: 'MOVE' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.change(inputValue, { target: { value: 'REPORT' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+    });
+    const displayText = screen.queryByText('axisX: 0 axisY: 1 facing:NORTH');
+    expect(displayText).toBeInTheDocument();
+  });
+
+  test('Scenario b) - PLACE 0,0,NORTH; LEFT; REPORT - Output: 0,0,WEST', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+    const inputValue = screen.getByTestId('command-input');
+    act(() => {
+      fireEvent.change(inputValue, { target: { value: 'PLACE 0,0,NORTH' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.change(inputValue, { target: { value: 'LEFT' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.change(inputValue, { target: { value: 'REPORT' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+    });
+    const displayText = screen.queryByText('axisX: 0 axisY: 0 facing:WEST');
+    expect(displayText).toBeInTheDocument();
+  });
+
+  test('Scenario c) - PLACE 1,2,EAST; MOVE; MOVE; LEFT; MOVE; REPORT - Output: 3,3,NORTH', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+    const inputValue = screen.getByTestId('command-input');
+    act(() => {
+      fireEvent.change(inputValue, { target: { value: 'PLACE 1,2,EAST' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.change(inputValue, { target: { value: 'MOVE' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.change(inputValue, { target: { value: '' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.change(inputValue, { target: { value: 'MOVE' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.change(inputValue, { target: { value: 'LEFT' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.change(inputValue, { target: { value: 'MOVE' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.change(inputValue, { target: { value: 'REPORT' } });
+      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+    });
+    const displayText = screen.queryByText('axisX: 3 axisY: 3 facing:NORTH');
+    expect(displayText).toBeInTheDocument();
+  });
+});
