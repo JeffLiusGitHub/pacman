@@ -36,7 +36,6 @@ const Left = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: 1rem;
   ${laptop({

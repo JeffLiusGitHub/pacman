@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { setCommand, setError } from '../store/InfoSlice';
 import { laptopXL, laptopL, tablet, mobile, wideScreen, laptop } from '../helper/responsive';
 const InputPageContainer = styled.div`
-  padding: 1rem 0rem;
-  width: auto;
+  padding: 2rem 0rem;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,7 @@ const Input = styled.input`
     align-items: center;
     justify-content: center;
     height: 100%;
-    ${wideScreen({ fontSize: '1.5rem' })}
+    ${wideScreen({ fontSize: '1.5rem', transform: 'translateY(4px)' })}
     ${laptopXL({ fontSize: '1rem' })}
    ${laptopL({ fontSize: '0.7rem' })}
    ${laptop({ fontSize: '1rem' })}

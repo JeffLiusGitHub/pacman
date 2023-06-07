@@ -25,6 +25,7 @@ const OutputLayout = styled.div`
 const OutputMessage = styled.div`
   display: flex;
   align-items: center;
+  line-height: 2rem;
   color: ${(props) => props.color};
   margin-top: 0.5rem;
   font-weight: 900;
