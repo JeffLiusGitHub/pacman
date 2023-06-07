@@ -6,12 +6,12 @@ import { laptopXL, laptopL } from '../helper/responsive';
 
 const OutPutLayout = styled.div`
   width: 100%;
-  margin-top: 15px;
+  margin-top: 1rem;
   display: flex;
   gap: 1rem;
   justify-content: space-between;
   ${laptopXL({ flexDirection: 'column' })}
-  ${laptopL({ fontSize: '20px' })}
+  ${laptopL({ fontSize: '2rem' })}
 `;
 const OutputPage = () => {
   const { errorArray } = useSelector((state) => state.info);

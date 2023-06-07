@@ -47,7 +47,7 @@ const TileComponent = ({ facing, color, i, j, displayPacman, xLength }) => {
         <img src={PacmanSvg} alt="pacman" />
       ) : (
         <p>
-          [ {i} , {j} ]
+          {i} . {j}
         </p>
       )}
     </Tile>

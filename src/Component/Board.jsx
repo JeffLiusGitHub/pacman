@@ -12,9 +12,9 @@ const BoardContainer = styled.div`
   ${wideScreen({ width: '1000px', height: '1000px' })}
   ${laptopXL({ width: '900px', height: '900px' })}
   ${laptopL({ width: '800px', height: '800px' })}
-  ${laptop({ width: '800px', height: '800px' })}
-  ${tablet({ width: '600px', height: '600px' })}
-  ${mobile({ width: '400px', height: '400px' })}
+  ${laptop({ width: '800px', height: '800px', fontSize: '1rem' })}
+  ${tablet({ width: '90vw', height: '90vw' })}
+  ${mobile({ width: '90vw', height: '90vw' })}
 `;
 
 const Board = () => {

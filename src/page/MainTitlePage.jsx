@@ -1,11 +1,11 @@
 import styled, { keyframes } from 'styled-components';
-import { mobile, tablet, laptopL, laptopXL } from '../helper/responsive';
+import { mobile, tablet, laptop, laptopL, laptopXL, wideScreen } from '../helper/responsive';
 import Loading from '../Component/LottieAnimation';
 import ghost from '../assets/ghost.json';
 import pacman from '../assets/pacman.json';
 
 const MainTitleContainer = styled.div`
-  /* width:80%; */
+  width: auto;
   background-color: #000000;
   padding: 3rem 3rem;
   grid-column: 1 / span 2;
@@ -15,30 +15,26 @@ const MainTitleContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   font-family: 'Press Start 2P', cursive;
-  ${laptopXL({
+  ${laptop({
     gridColumn: '1',
     gridRow: '1'
   })}
 
-  /* 正常尺寸布局 */
-	${tablet({
+  ${laptopL({
     gap: '2rem',
     gridTemplateColumns: '1fr 1fr',
     gridTemplateRows: '1fr 1fr'
   })}
 `;
 const TitleBorder = styled.div`
-  /* padding: 1rem; */
   border: 0.5rem dashed #2e63f7;
-  display: flex; /* 添加 flex 布局属性 */
-  align-items: center; /* 垂直居中对齐 */
-  justify-content: space-evenly; /* 水平居中对齐 */
-  /* gap: 0.4rem; */
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
   grid-column: 2;
   grid-row: 1;
-
-  /* 正常尺寸样式 */
-  ${tablet({
+  ${laptopL({
     gridColumn: '1 / span 3',
     gridRow: '1'
   })}
@@ -101,14 +97,10 @@ const LeftScore = styled.div`
   color: #ffffff;
   grid-row: 1;
   grid-column: 1;
-
-  /* ${tablet({
-    gridRow: 2,
-    gridColumn: 1
-  })} */
-  ${laptopXL({ fontSize: '4rem' })}
-  ${laptopL({ fontSize: '1.5rem' })}
-  ${tablet({ fontSize: '1.8rem', gridRow: '2', gridColumn: '1' })}
+  ${wideScreen({ fontSize: '2.8rem' })}
+  ${laptopXL({ fontSize: '2.5rem' })}
+  ${laptopL({ fontSize: '1.5rem', gridRow: '2', gridColumn: '1' })}
+  ${tablet({ fontSize: '1.8rem' })}
   ${mobile({ fontSize: '2rem' })}
 `;
 
@@ -118,13 +110,12 @@ const RightScore = styled.div`
   align-items: center;
   justify-content: center;
   color: #ffffff;
-
   grid-column: 3;
   grid-row: 1;
-
-  ${laptopXL({ fontSize: '3rem' })}
-  ${laptopL({ fontSize: '1.5rem' })}
-  ${tablet({ fontSize: '1.8rem', gridRow: 2, gridColumn: 2 })}
+  ${wideScreen({ fontSize: '2.8rem' })}
+  ${laptopXL({ fontSize: '2.5rem' })}
+  ${laptopL({ fontSize: '1.5rem', gridRow: '2', gridColumn: '2' })}
+  ${tablet({ fontSize: '1.8rem' })}
   ${mobile({ fontSize: '2rem' })}
 `;
 
@@ -134,13 +125,8 @@ const ScoreLabel = styled.div`
   white-space: nowrap;
 `;
 
-const ScoreValue = styled.div`
-  font-size: 1rem;
+const ScoreValue = styled.p`
   color: #ffffff;
-  ${laptopXL({ fontSize: '2.5rem' })}
-  ${laptopL({ fontSize: '1.5rem' })}
-  ${tablet({ fontSize: '1.8rem' })}
-  ${mobile({ fontSize: '2rem' })}
 `;
 const MainTitlePage = () => {
   return (

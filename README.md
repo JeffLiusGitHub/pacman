@@ -1,6 +1,6 @@
 # Project Intro
 
-This project utilizes React and JavaScript, along with some Lottie animations in the title. The entire project utilizes styled-components for CSS styling and has been optimized for code formatting using Prettier and ESLint. The project also includes testing for certain scenarios and is deployed on Firebase using Git Actions for CI/CD. You can view it at the following [URL](https://pacman-4aed0.web.app/).
+This project utilizes React and JavaScript, along with some Lottie animations in the title. The entire project utilizes styled-components for CSS styling and has been optimized for code formatting using Prettier and ESLint. The repo will run husky hook when use git. The project also includes testing for certain scenarios and is deployed on Firebase using Git Actions for CI/CD. You can view it at the following [URL](https://pacman-4aed0.web.app/).
 
 ## Getting Started with Create React App
 

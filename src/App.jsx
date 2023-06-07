@@ -7,23 +7,24 @@ import IntroductionPage from './page/IntroductionPage';
 import ModalContainer from './page/ModalContainer';
 import OutputPage from './page/OutputPage';
 import InputComponent from './Component/InputComponent';
-import { laptopXL } from './helper/responsive';
+import { laptop } from './helper/responsive';
 import MainTitlePage from './page/MainTitlePage';
 
 const WholePageLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${laptop({ width: '100%', padding: '0' })}
 `;
 
 const WholePageGridLayout = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 35% 65%;
   grid-gap: 3rem;
   width: 90vw;
   max-width: 2000px;
   grid-template-rows: 24rem 1fr;
-  ${laptopXL({
+  ${laptop({
     gridTemplateColumns: '1fr',
     gridTemplateRows: '24rem repeat(2,auto) '
   })}
@@ -38,9 +39,18 @@ const Left = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  ${laptopXL({
+  ${laptop({
     gridColumn: '1',
-    gridRow: '3'
+    gridRow: '3',
+    '> :nth-child(1)': {
+      order: 3
+    },
+    '> :nth-child(2)': {
+      order: 1
+    },
+    '> :nth-child(3)': {
+      order: 2
+    }
   })}
 `;
 
@@ -48,7 +58,7 @@ const Right = styled.div`
   grid-column: 2;
   grid-row: 2;
   padding: 1rem;
-  ${laptopXL({
+  ${laptop({
     gridColumn: '1',
     gridRow: '2'
   })}

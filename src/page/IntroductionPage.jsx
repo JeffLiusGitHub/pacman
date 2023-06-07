@@ -3,31 +3,28 @@ import { Button } from '@mui/material';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { tablet, laptopXL, laptopL } from '../helper/responsive';
+import { tablet, laptopXL, laptopL, laptop, wideScreen, mobile } from '../helper/responsive';
 const IntroContainer = styled.div`
   width: 100%;
   padding: 1rem;
   font-family: 'Press Start 2P', cursive;
+  ${wideScreen({ fontSize: '1.5rem' })}
+  ${laptopXL({ fontSize: '1rem' })}
+  ${laptopL({ fontSize: '0.7rem' })}
+  ${laptop({ fontSize: '1rem' })}
+  ${tablet({ fontSize: '1.8rem' })}
+  ${mobile({ fontSize: '1.8rem' })}
 `;
 
 const Code = styled.span`
   color: #db851c;
   font-weight: 700;
-  ${laptopXL({ fontSize: '2rem' })}
-  ${laptopL({ fontSize: '1rem' })}
-  ${tablet({ fontSize: '1.5rem' })}
 `;
 const Content = styled.p`
   color: #ffca28;
   font-weight: 700;
-
-  font-size: 1rem;
   white-space: pre-wrap;
   overflow-wrap: break-word;
-  /* font-family: 'Press Start 2P', cursive; */
-  ${laptopXL({ fontSize: '2rem' })}
-  ${laptopL({ fontSize: '1rem' })}
-  ${tablet({ fontSize: '1.5rem' })}
 `;
 
 const ButtonContainer = styled.div`
