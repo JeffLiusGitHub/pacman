@@ -8,12 +8,12 @@ const IntroContainer = styled.div`
   width: 100%;
   padding: 1rem;
   font-family: 'Press Start 2P', cursive;
-  ${wideScreen({ fontSize: '1.5rem' })}
+  ${wideScreen({ fontSize: '1.2rem' })}
   ${laptopXL({ fontSize: '1rem' })}
-  ${laptopL({ fontSize: '0.7rem' })}
+  ${laptopL({ fontSize: '1rem' })}
   ${laptop({ fontSize: '1rem' })}
-  ${tablet({ fontSize: '1.8rem' })}
-  ${mobile({ fontSize: '1.8rem' })}
+  ${tablet({ fontSize: '1rem' })}
+  ${mobile({ fontSize: '1rem' })}
 `;
 
 const Code = styled.span`

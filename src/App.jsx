@@ -14,7 +14,7 @@ const WholePageLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${laptop({ width: '100%', padding: '0' })}
+  ${laptop({ width: '95vw', padding: '0' })}
 `;
 
 const WholePageGridLayout = styled.div`
@@ -25,7 +25,7 @@ const WholePageGridLayout = styled.div`
   max-width: 2000px;
   grid-template-rows: 24rem 1fr;
   ${laptop({
-    gridTemplateColumns: '1fr',
+    gridTemplateColumns: '100%',
     gridTemplateRows: '24rem repeat(2,auto) '
   })}
 `;

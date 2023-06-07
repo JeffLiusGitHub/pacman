@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { setCommand, setError } from '../store/InfoSlice';
 import { laptopXL, laptopL, tablet, mobile, wideScreen, laptop } from '../helper/responsive';
 const InputPageContainer = styled.div`
-  padding: 1rem;
-  width: 100%;
+  padding: 1rem 0rem;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -24,17 +24,26 @@ const Title = styled.label`
   color: #ffca28;
   margin-bottom: 3rem;
   font-family: 'Press Start 2P', cursive;
+  ${wideScreen({ fontSize: '1.5rem' })}
+  ${laptopXL({ fontSize: '1rem' })}
+   ${laptopL({ fontSize: '0.7rem' })}
+   ${laptop({ fontSize: '1rem' })}
+   ${tablet({ fontSize: '1rem' })}
+  ${mobile({ fontSize: '0.8rem' })}
 `;
 
 const InputContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: center;
   border-radius: 5px;
   border: 3px solid #ffca27;
   background-color: #212121;
-  padding: 1rem;
+  padding: 1rem 0;
   margin-top: 1.5rem;
-  height: 50px;
+  height: 3.5rem;
   font-family: 'Press Start 2P', cursive;
   overflow: hidden;
 `;
@@ -42,33 +51,42 @@ const InputContainer = styled.div`
 const Input = styled.input`
   flex: 1;
   color: white;
+  line-height: normal;
   background-color: transparent;
   border: none;
   height: 100%;
-  /* font-size: 25px; */
   background-color: #212121;
   border-color: #ffca27;
-  padding: 2rem 1rem;
+  padding: 2rem 2rem;
   text-overflow: ellipsis;
   outline: none;
-  display: flex;
-  align-items: center;
-  width: 100%;
+  width: 80%;
   border-radius: 5px;
   color: white;
   background-color: #212121;
   border-color: #ffca27;
-  height: 50px;
-  font-size: 25px;
+  font-size: 1rem;
+  height: 100%;
   padding: 2rem 1rem;
   font-family: 'Press Start 2P', cursive;
-  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   ::placeholder {
-    font-family: 'Press Start 2P', cursive;
     color: rgba(136, 179, 208, 0.537);
     padding: 1rem;
     font-size: 0.8em;
     text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    ${wideScreen({ fontSize: '1.5rem' })}
+    ${laptopXL({ fontSize: '1rem' })}
+   ${laptopL({ fontSize: '0.7rem' })}
+   ${laptop({ fontSize: '1rem' })}
+   ${tablet({ fontSize: '0.7rem' })}
+  ${mobile({ fontSize: '0.5rem' })}
   }
 `;
 
@@ -77,64 +95,16 @@ const StyledButton = styled.button`
   color: white;
   font-family: 'Press Start 2P', cursive;
   min-height: 3rem;
-  /* font-size: 25px; */
-  padding: 0 10px;
+  padding: 0 0.5rem;
   border: none;
   cursor: pointer;
+  ${wideScreen({ fontSize: '1.5rem' })}
+  ${laptopXL({ fontSize: '1rem' })}
+   ${laptopL({ fontSize: '0.7rem' })}
+   ${laptop({ fontSize: '1rem' })}
+   ${tablet({ fontSize: '0.7rem' })}
+  ${mobile({ fontSize: '0.5rem' })}
 `;
-// const InputPageContainer = styled.div`
-//   padding: 1rem;
-//   width: 100%;
-// `;
-// // const TitleContainer = styled.div`
-// //   display: flex;
-// //   justify-content: space-between;
-// //   ${wideScreen({ fontSize: '1.5rem' })}
-// //   ${laptopXL({ fontSize: '1rem' })}
-// //   ${laptopL({ fontSize: '0.7rem' })}
-// //   ${laptop({ fontSize: '1rem' })}
-// //   ${tablet({ fontSize: '1.8rem' })}
-// //   ${mobile({ fontSize: '1.8rem' })}
-// // `;
-// const Title = styled.label`
-//   /* font-size: 1rem; */
-//   font-weight: 900;
-//   color: #ffca28;
-//   margin-bottom: 25px;
-//   font-family: 'Press Start 2P', cursive;
-//   /* ${laptopXL({ fontSize: '2rem' })}
-//   ${laptopL({ fontSize: '1.2rem' })} */
-// `;
-// const Input = styled.input`
-//   display: flex;
-//   align-items: center;
-//   width: 100%;
-//   border-radius: 5px;
-//   color: white;
-//   background-color: #212121;
-//   border-color: #ffca27;
-//   height: 50px;
-//   font-size: 25px;
-//   padding: 2rem 1rem;
-//   font-family: 'Press Start 2P', cursive;
-//   text-overflow: ellipsis;
-//   /* ${laptopXL({ fontSize: '20px' })}
-// 	${laptopL({ fontSize: '15px' })}
-//   ${tablet({ fontSize: '15px' })}
-//   ${mobile({ fontSize: '20px' })} */
-//   ::placeholder {
-//     color: rgba(136, 179, 208, 0.537);
-//     padding: 1rem;
-//     font-size: 0.8em;
-//     font-family: 'Press Start 2P', cursive;
-//     text-overflow: ellipsis;
-//     /* ${laptopXL({ fontSize: '20px' })}
-// 		${laptopL({ fontSize: '15px' })}
-//     ${tablet({ fontSize: '15px' })}
-//     ${mobile({ fontSize: '20px' })} */
-//   }
-// `;
-
 const InputComponent = () => {
   const [inputValue, setInputValue] = useState('');
   const { xLength, yLength, facingToward } = useSelector((state) => state.board);
@@ -178,7 +148,7 @@ const InputComponent = () => {
           <Input
             id="command-input"
             data-testid="command-input"
-            placeholder="Please type your command..."
+            placeholder="Start from here..."
             value={inputValue.toUpperCase()}
             onChange={(event) => setInputValue(event.target.value.toUpperCase())}
           />

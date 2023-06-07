@@ -7,7 +7,7 @@ import pacman from '../assets/pacman.json';
 const MainTitleContainer = styled.div`
   width: auto;
   background-color: #000000;
-  padding: 3rem 3rem;
+  padding: 3rem 1rem;
   grid-column: 1 / span 2;
   grid-row: 1;
   display: grid;
@@ -30,6 +30,7 @@ const TitleBorder = styled.div`
   border: 0.5rem dashed #2e63f7;
   display: flex;
   align-items: center;
+  padding: 1.5rem 0rem;
   justify-content: space-evenly;
 
   grid-column: 2;
@@ -49,8 +50,8 @@ const Title = styled.div`
   text-align: center;
   ${laptopXL({ fontSize: '3rem' })}
   ${laptopL({ fontSize: '1.5rem' })}
-  ${tablet({ fontSize: '1.8rem' })}
-  ${mobile({ fontSize: '2rem' })}
+  ${tablet({ fontSize: '1.2rem' })}
+  ${mobile({ fontSize: '1rem' })}
 `;
 const rotateScaleAnimation = keyframes`
   0% {
@@ -72,7 +73,13 @@ const rotateScaleAnimation = keyframes`
 const LeftIconContainer = styled.div`
   width: 12rem;
   animation: ${rotateScaleAnimation} 10s infinite;
+  ${wideScreen({ width: '12rem' })}
+  ${laptopXL({ width: '10rem' })}
+  ${laptopL({ width: '8rem' })}
+  ${tablet({ width: '6rem' })}
+  ${mobile({ width: '4rem' })}
 `;
+
 const slideAnimation = keyframes`
   0% {
     transform: translateX(0);
@@ -88,6 +95,11 @@ const slideAnimation = keyframes`
 const RightIconContainer = styled.div`
   width: 10rem;
   animation: ${slideAnimation} 4s infinite ease-in-out;
+  ${wideScreen({ width: '10rem' })}
+  ${laptopXL({ width: '8rem' })}
+  ${laptopL({ width: '6rem' })}
+  ${tablet({ width: '4rem' })}
+  ${mobile({ width: '2rem' })}
 `;
 
 const LeftScore = styled.div`
@@ -100,8 +112,8 @@ const LeftScore = styled.div`
   ${wideScreen({ fontSize: '2.8rem' })}
   ${laptopXL({ fontSize: '2.5rem' })}
   ${laptopL({ fontSize: '1.5rem', gridRow: '2', gridColumn: '1' })}
-  ${tablet({ fontSize: '1.8rem' })}
-  ${mobile({ fontSize: '2rem' })}
+  ${tablet({ fontSize: '1rem' })}
+  ${mobile({ fontSize: '0.5rem' })}
 `;
 
 const RightScore = styled.div`
@@ -115,8 +127,8 @@ const RightScore = styled.div`
   ${wideScreen({ fontSize: '2.8rem' })}
   ${laptopXL({ fontSize: '2.5rem' })}
   ${laptopL({ fontSize: '1.5rem', gridRow: '2', gridColumn: '2' })}
-  ${tablet({ fontSize: '1.8rem' })}
-  ${mobile({ fontSize: '2rem' })}
+  ${tablet({ fontSize: '1rem' })}
+  ${mobile({ fontSize: '0.5rem' })}
 `;
 
 const ScoreLabel = styled.div`

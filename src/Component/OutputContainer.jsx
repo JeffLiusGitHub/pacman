@@ -5,35 +5,36 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const OutputLayout = styled.div`
   font-family: 'Press Start 2P', cursive;
-  width: 45%;
+  width: 50%;
   border-radius: 4px;
   background-color: #212121;
-  margin: 10px;
+  margin: 5px;
   height: 400px;
   border-radius: 5px;
   overflow: scroll;
   padding: 10px; /* 添加内边距 */
   border: 1px solid #7882a4;
-
   ${wideScreen({ fontSize: '1.5rem' })}
-  ${laptopXL({ fontSize: '1rem', width: '90%', height: '225px' })}
-  ${laptopL({ fontSize: '0.7rem' })}
+  ${laptopXL({ fontSize: '1rem', width: '100%', height: '225px' })}
+  ${laptopL({ fontSize: '1rem' })}
   ${laptop({ fontSize: '1rem' })}
-  ${tablet({ fontSize: '1.8rem' })}
-  ${mobile({ fontSize: '1.8rem' })}
+  ${tablet({ fontSize: '1rem' })}
+  ${mobile({ fontSize: '1rem' })}
 `;
 
 const OutputMessage = styled.div`
+  display: flex;
+  align-items: center;
   color: ${(props) => props.color};
   margin-top: 0.5rem;
   font-weight: 900;
   margin-left: 0.625rem;
   ${wideScreen({ fontSize: '1.2rem' })}
-  ${laptopXL({ fontSize: '0.8rem' })}
-  ${laptopL({ fontSize: '0.6rem' })}
-  ${laptop({ fontSize: '0.8rem' })}
-  ${tablet({ fontSize: '1.8rem' })}
-  ${mobile({ fontSize: '1.8rem' })}
+  ${laptopXL({ fontSize: '1rem' })}
+  ${laptopL({ fontSize: '1rem' })}
+  ${laptop({ fontSize: '1rem' })}
+  ${tablet({ fontSize: '1rem' })}
+  ${mobile({ fontSize: '1rem' })}
 `;
 
 const OutputTitle = styled.div`
