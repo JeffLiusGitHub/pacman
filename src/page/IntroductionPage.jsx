@@ -7,7 +7,8 @@ import { tablet, laptopXL, laptopL, laptop, wideScreen, mobile } from '../helper
 const IntroContainer = styled.div`
   width: 100%;
   padding: 1rem;
-  line-height: 1.8rem;
+  line-height: 1.5rem;
+  word-wrap: break-word;
   font-family: 'Press Start 2P', cursive;
   ${wideScreen({ fontSize: '1.2rem' })}
   ${laptopXL({ fontSize: '1rem' })}

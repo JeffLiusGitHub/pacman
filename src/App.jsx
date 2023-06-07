@@ -20,13 +20,15 @@ const WholePageLayout = styled.div`
 const WholePageGridLayout = styled.div`
   display: grid;
   grid-template-columns: 35% 65%;
-  grid-gap: 3rem;
+  grid-column-gap: 3rem;
+  grid-row-gap: 1.5rem;
   width: 90vw;
   max-width: 2000px;
   grid-template-rows: 24rem 1fr;
   ${laptop({
     gridTemplateColumns: '100%',
-    gridTemplateRows: '24rem repeat(2,auto) '
+    gridTemplateRows: ' repeat(3,auto) ',
+    gridRowGap: '1.5rem'
   })}
 `;
 
