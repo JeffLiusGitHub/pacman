@@ -7,7 +7,7 @@ import pacman from '../assets/pacman.json';
 const MainTitleContainer = styled.div`
   width: auto;
   background-color: #000000;
-  padding: 3rem 1rem;
+  padding: 3rem 2rem;
   grid-column: 1 / span 2;
   grid-row: 1;
   display: grid;
