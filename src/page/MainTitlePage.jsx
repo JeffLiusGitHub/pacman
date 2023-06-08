@@ -76,9 +76,9 @@ const LeftIconContainer = styled.div`
   animation: ${rotateScaleAnimation} 10s infinite;
   ${wideScreen({ width: '12rem' })}
   ${laptopXL({ width: '10rem' })}
-  ${laptopL({ width: '8rem' })}
-  ${tablet({ width: '6rem' })}
-  ${mobile({ width: '4rem' })}
+  ${laptopL({ width: '10rem' })}
+  ${tablet({ width: '12rem' })}
+  ${mobile({ width: '8rem' })}
 `;
 
 const slideAnimation = keyframes`
@@ -99,8 +99,8 @@ const RightIconContainer = styled.div`
   ${wideScreen({ width: '10rem' })}
   ${laptopXL({ width: '8rem' })}
   ${laptopL({ width: '6rem' })}
-  ${tablet({ width: '4rem' })}
-  ${mobile({ width: '2rem' })}
+  ${tablet({ width: '10rem' })}
+  ${mobile({ width: '8rem' })}
 `;
 
 const LeftScore = styled.div`

@@ -9,8 +9,8 @@ const Loading = ({ iconJson }) => {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      animationData: iconJson,
-      onComplete: lottie.destroy()
+      animationData: iconJson
+      // onComplete: lottie.destroy()
     });
     return () => {
       animation.destroy();
