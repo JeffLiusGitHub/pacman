@@ -54,9 +54,7 @@ const TileComponent = ({ facing, color, i, j, displayPacman, xLength }) => {
     if (imgRef.current) {
       const animationProps = {
         opacity: displayPacman ? 1 : 0,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+
         scale: [0.8, 1.2, 1],
         transition: { duration: 0.8, ease: 'easeInOut' },
         ...(displayPacman && facingAnimationMap[facing])
@@ -69,9 +67,10 @@ const TileComponent = ({ facing, color, i, j, displayPacman, xLength }) => {
   return (
     <Tile facing={facing} color={color} xLength={xLength} key={`${i}.${j}`}>
       <motion.div
-        initial={{ opacity: 1 }}
+        initial={{ opacity: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         animate={controls}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}>
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+      >
         {displayPacman ? (
           <motion.img src={PacmanSvg} alt="pacman" ref={imgRef} />
         ) : (

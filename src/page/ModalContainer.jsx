@@ -29,7 +29,8 @@ const ModalContainer = ({ open, handleClose }) => {
       open={open}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description">
+      aria-describedby="modal-modal-description"
+    >
       <Box sx={modalStyle}>
         <Typography
           id="modal-modal-title"
@@ -38,7 +39,8 @@ const ModalContainer = ({ open, handleClose }) => {
           sx={{
             fontSize: { sx: '15px', sm: '30px', md: '40px' },
             fontWeight: 'bold'
-          }}>
+          }}
+        >
           Details
         </Typography>
         {details.map((detail, index) => (

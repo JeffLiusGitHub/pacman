@@ -56,7 +56,8 @@ const IntroductionPage = ({ handleOpen }) => {
           sx={{
             backgroundColor: '#FFCA27',
             fontWeight: 900
-          }}>
+          }}
+        >
           <HelpOutlineIcon sx={{ mr: '5px' }} />
           Instruction
         </Button>

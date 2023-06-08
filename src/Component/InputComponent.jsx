@@ -141,7 +141,8 @@ const InputComponent = () => {
         onSubmit={(event) => {
           event.preventDefault();
           handleInputCommand(inputValue);
-        }}>
+        }}
+      >
         <Title htmlFor="command-input">Type and Press Enter...</Title>
 
         <InputContainer>

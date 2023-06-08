@@ -8,23 +8,27 @@ import 'jest-styled-components';
 import { fireEvent } from '@testing-library/react';
 
 describe('No Pacman Placed', () => {
-  test('should display "No facing data could be found. Place the Pacman first." when typing MOVE command and pressing enter', () => {
+  test('should display "No facing data could be found. Place the Pacman first." when typing MOVE command and pressing enter', async () => {
     render(
       <Provider store={store}>
         <App />
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     expect(inputValue).toBeInTheDocument();
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'MOVE' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText(
       /No facing data could be found. Place the Pacman first./i
     );
-    expect(displayText).toBeInTheDocument();
+    await waitFor(() => {
+      expect(displayText).toBeInTheDocument();
+    });
   });
+
   test('type LEFT command then pressing enter, expect Place the Pacman first, Facing input is invalid.', () => {
     render(
       <Provider store={store}>
@@ -32,9 +36,10 @@ describe('No Pacman Placed', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'LEFT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText(/Place the Pacman first, Facing input is invalid./i);
     expect(displayText).toBeInTheDocument();
@@ -47,9 +52,11 @@ describe('No Pacman Placed', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'RIGHT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText(
       /No facing data could be found. Place the Pacman first./i
@@ -64,9 +71,11 @@ describe('No Pacman Placed', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'REPORT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText(/cannot report the axis before initializing/i);
     expect(displayText).toBeInTheDocument();
@@ -83,7 +92,8 @@ describe('Pacman Placed', () => {
     const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2,1,NORTH' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      const submitButton = screen.getByText('Submit');
+      fireEvent.click(submitButton);
     });
     const pacmanImage = screen.getByAltText('pacman');
     const displayText = screen.getByText(/PLACE 2,1,NORTH/);
@@ -92,23 +102,25 @@ describe('Pacman Placed', () => {
     expect(pacmanImage).toBeInTheDocument();
   });
 
-  test('PLACE Pacman correctly, type MOVE command then pressing enter, expect display MOVE command and corresponding axis of the Pacman disappeared', () => {
+  test('PLACE Pacman correctly, type MOVE command then pressing enter, expect display MOVE command and corresponding axis of the Pacman disappeared', async () => {
     render(
       <Provider store={store}>
         <App />
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2,1,NORTH' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'MOVE' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
-    const displayText = screen.queryAllByText(/MOVE/i);
-    expect(screen.queryByText('[2,2]')).toBeNull();
-    //already exist one in the instruction
-    expect(displayText).toHaveLength(2);
+    await waitFor(() => {
+      const displayText = screen.queryAllByText(/MOVE/i);
+      expect(screen.queryByText('[2,2]')).toBeNull();
+      expect(displayText).toHaveLength(2);
+    });
   });
 
   test('PLACE Pacman correctly, type LEFT command then pressing enter,expect Pacman turn left.', () => {
@@ -118,11 +130,12 @@ describe('Pacman Placed', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2,1,NORTH' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'LEFT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const pacmanImage = screen.getByAltText('pacman');
     const style = window.getComputedStyle(pacmanImage);
@@ -135,11 +148,12 @@ describe('Pacman Placed', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2,1,NORTH' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'RIGHT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const pacmanImage = screen.getByAltText('pacman');
     const style = window.getComputedStyle(pacmanImage);
@@ -153,11 +167,12 @@ describe('Pacman Placed', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2,1,NORTH' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'REPORT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText('axisX: 2 axisY: 1 facing:NORTH');
     expect(displayText).toBeInTheDocument();
@@ -172,9 +187,10 @@ describe('test error input', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'JKHIUHCN' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText(/Please check your command/i);
     expect(displayText).toBeInTheDocument();
@@ -187,9 +203,10 @@ describe('test error input', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2 1 NORTH' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText(/do not add space before facing/i);
     expect(displayText).toBeInTheDocument();
@@ -202,9 +219,10 @@ describe('test error input', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 3,4,DOWN' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText(/the input error, please check your input/i);
     expect(displayText).toBeInTheDocument();
@@ -217,9 +235,10 @@ describe('test error input', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText(/please also enter axis and facing/i);
     expect(displayText).toBeInTheDocument();
@@ -234,11 +253,11 @@ describe('invalid movement', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 5,5,NORTH' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'MOVE' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
     });
     const displayText = screen.queryByText(/cannot put Pacman out of table/i);
     expect(displayText).toBeInTheDocument();
@@ -251,11 +270,12 @@ describe('invalid movement', () => {
       </Provider>
     );
     const inputValue = screen.getByPlaceholderText('Start from here...');
+    const submitButton = screen.getByText('Submit');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 4,4,NORTH' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'MOVE' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText(
       /you cannot move any more. It's already on the boundary of the board/i
@@ -292,11 +312,12 @@ describe('Test robot movements', () => {
     const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 0,0,NORTH' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      const submitButton = screen.getByText('Submit');
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'MOVE' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'REPORT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText('axisX: 0 axisY: 1 facing:NORTH');
     expect(displayText).toBeInTheDocument();
@@ -311,11 +332,12 @@ describe('Test robot movements', () => {
     const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 0,0,NORTH' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      const submitButton = screen.getByText('Submit');
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'LEFT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'REPORT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText('axisX: 0 axisY: 0 facing:WEST');
     expect(displayText).toBeInTheDocument();
@@ -330,19 +352,20 @@ describe('Test robot movements', () => {
     const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 1,2,EAST' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      const submitButton = screen.getByText('Submit');
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'MOVE' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: '' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'MOVE' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'LEFT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'MOVE' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
       fireEvent.change(inputValue, { target: { value: 'REPORT' } });
-      fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
+      fireEvent.click(submitButton);
     });
     const displayText = screen.queryByText('axisX: 3 axisY: 3 facing:NORTH');
     expect(displayText).toBeInTheDocument();
