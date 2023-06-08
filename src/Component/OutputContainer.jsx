@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { laptopXL, wideScreen, laptopL, laptop, tablet, mobile } from '../helper/responsive';
 import ErrorIcon from '@mui/icons-material/Error';
@@ -12,7 +13,7 @@ const OutputLayout = styled.div`
   height: 400px;
   border-radius: 5px;
   overflow: scroll;
-  padding: 10px; /* 添加内边距 */
+  padding: 10px;
   border: 1px solid #7882a4;
   ${wideScreen({ fontSize: '1.5rem' })}
   ${laptopXL({ fontSize: '1rem', width: '100%', height: '225px' })}
@@ -53,6 +54,14 @@ const OutPutContainer = ({ title, color, messageArray }) => {
       <ErrorIcon sx={{ fontSize: '15px', mr: 1 }} />
     );
 
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messageArray]);
+
   const Message = messageArray.map((message, index) => (
     <OutputMessage color={color} key={`${message}-${index}`}>
       {icon}
@@ -61,7 +70,7 @@ const OutPutContainer = ({ title, color, messageArray }) => {
   ));
 
   return (
-    <OutputLayout>
+    <OutputLayout ref={scrollRef}>
       <OutputTitle>{title}</OutputTitle>
       {Message}
     </OutputLayout>
