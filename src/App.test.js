@@ -14,7 +14,8 @@ describe('No Pacman Placed', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
+    expect(inputValue).toBeInTheDocument();
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'MOVE' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -30,7 +31,7 @@ describe('No Pacman Placed', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'LEFT' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -45,7 +46,7 @@ describe('No Pacman Placed', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'RIGHT' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -62,7 +63,7 @@ describe('No Pacman Placed', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'REPORT' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -79,7 +80,7 @@ describe('Pacman Placed', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2,1,NORTH' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -97,7 +98,7 @@ describe('Pacman Placed', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2,1,NORTH' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -116,7 +117,7 @@ describe('Pacman Placed', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2,1,NORTH' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -133,7 +134,7 @@ describe('Pacman Placed', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2,1,NORTH' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -151,7 +152,7 @@ describe('Pacman Placed', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2,1,NORTH' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -170,7 +171,7 @@ describe('test error input', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'JKHIUHCN' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -185,7 +186,7 @@ describe('test error input', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 2 1 NORTH' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -200,7 +201,7 @@ describe('test error input', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 3,4,DOWN' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -215,7 +216,7 @@ describe('test error input', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -232,7 +233,7 @@ describe('invalid movement', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 5,5,NORTH' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -249,7 +250,7 @@ describe('invalid movement', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 4,4,NORTH' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -288,7 +289,7 @@ describe('Test robot movements', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 0,0,NORTH' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -307,7 +308,7 @@ describe('Test robot movements', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 0,0,NORTH' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
@@ -326,7 +327,7 @@ describe('Test robot movements', () => {
         <App />
       </Provider>
     );
-    const inputValue = screen.getByTestId('command-input');
+    const inputValue = screen.getByPlaceholderText('Start from here...');
     act(() => {
       fireEvent.change(inputValue, { target: { value: 'PLACE 1,2,EAST' } });
       fireEvent.keyPress(inputValue, { key: 'Enter', code: 13, charCode: 13 });
