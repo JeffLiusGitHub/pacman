@@ -1,8 +1,35 @@
 import React, { useRef, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion, useAnimation } from 'framer-motion';
 import PacmanSvg from '../assets/Pacman.svg';
 import { tablet, laptop, laptopL, laptopXL, wideScreen } from '../helper/responsive';
+const openCloseMouth = keyframes`
+  0%, 100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.6);
+  }
+`;
+
+const getRotationDegrees = (facing) => {
+  const rotationDegrees = {
+    NORTH: '0deg',
+    EAST: '90deg',
+    SOUTH: '180deg',
+    WEST: '270deg'
+  };
+  return rotationDegrees[facing];
+};
+
+const ImageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: ${(props) => `rotate(${getRotationDegrees(props.facing)})`};
+`;
 
 const Tile = styled.div`
   background-color: ${(props) => props.color};
@@ -16,28 +43,15 @@ const Tile = styled.div`
   font-family: 'Press Start 2P', cursive;
   font-size: 1rem;
   border: 4px double #1923fb;
-  ${wideScreen({ fontSize: '1.3rem' })}
-  ${laptopXL({ fontSize: '1rem' })}
-  ${laptopL({ fontSize: '1rem' })}
-  ${laptop({ fontSize: '0.8rem' })}
-  ${tablet({ fontSize: '0.6rem' })}
-  
+  ${wideScreen({ fontSize: '1.3rem' })} ${laptopXL({ fontSize: '1rem' })} ${laptopL({
+    fontSize: '1rem'
+  })} ${laptop({ fontSize: '0.8rem' })} ${tablet({ fontSize: '0.6rem' })}
   img {
     transition-timing-function: ease-in;
     width: 50%;
     height: 50%;
     z-index: 1;
-    transform: rotate(
-      ${(props) => {
-        const rotationDegrees = {
-          NORTH: '0deg',
-          EAST: '90deg',
-          SOUTH: '180deg',
-          WEST: '270deg'
-        };
-        return rotationDegrees[props.facing];
-      }}
-    );
+    animation: ${openCloseMouth} 0.8s infinite;
   }
 `;
 
@@ -62,7 +76,7 @@ const TileComponent = ({ facing, color, i, j, displayPacman, xLength }) => {
 
       controls.start(animationProps);
     }
-  }, [controls, displayPacman, facing]);
+  }, [controls, displayPacman, i, j]);
 
   return (
     <Tile facing={facing} color={color} xLength={xLength} key={`${i}.${j}`}>
@@ -72,7 +86,9 @@ const TileComponent = ({ facing, color, i, j, displayPacman, xLength }) => {
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
         {displayPacman ? (
-          <motion.img src={PacmanSvg} alt="pacman" ref={imgRef} />
+          <ImageContainer data-testid="image-container" facing={facing}>
+            <motion.img src={PacmanSvg} alt="pacman" ref={imgRef} />
+          </ImageContainer>
         ) : (
           <p>
             {i} . {j}

@@ -138,8 +138,9 @@ describe('Pacman Placed', () => {
       fireEvent.click(submitButton);
     });
     const pacmanImage = screen.getByAltText('pacman');
-    const style = window.getComputedStyle(pacmanImage);
-    expect(style.transform).toBe('rotate( 270deg )');
+    const imageContainer = pacmanImage.parentElement;
+    const style = window.getComputedStyle(imageContainer);
+    expect(style.transform).toBe('rotate(270deg)');
   });
   test('PLACE Pacman correctly, type RIGHT command then pressing enter,expect Pacman turn left.', () => {
     render(
@@ -155,9 +156,10 @@ describe('Pacman Placed', () => {
       fireEvent.change(inputValue, { target: { value: 'RIGHT' } });
       fireEvent.click(submitButton);
     });
-    const pacmanImage = screen.getByAltText('pacman');
-    const style = window.getComputedStyle(pacmanImage);
-    expect(style.transform).toBe('rotate( 90deg )');
+    // const pacmanImage = screen.getByAltText('pacman');
+    const imageContainer = screen.getByTestId('image-container');
+    const style = window.getComputedStyle(imageContainer);
+    expect(style.transform).toBe('rotate(90deg)');
   });
 
   test('type REPORT command then pressing enter, expect axisX: 2 axisY: 2 facing:NORTH', () => {
