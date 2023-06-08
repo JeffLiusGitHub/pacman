@@ -59,10 +59,10 @@ const TileComponent = ({ facing, color, i, j, displayPacman, xLength }) => {
   const imgRef = useRef(null);
   const controls = useAnimation();
   const facingAnimationMap = {
-    NORTH: { y: [50, 0] },
-    EAST: { x: [-50, 0] },
-    SOUTH: { y: [-50, 0] },
-    WEST: { x: [50, 0] }
+    NORTH: { y: [80, 0] },
+    EAST: { x: [-80, 0] },
+    SOUTH: { y: [-80, 0] },
+    WEST: { x: [80, 0] }
   };
   useEffect(() => {
     if (imgRef.current) {
@@ -70,7 +70,7 @@ const TileComponent = ({ facing, color, i, j, displayPacman, xLength }) => {
         opacity: displayPacman ? 1 : 0,
 
         scale: [0.8, 1.2, 1],
-        transition: { duration: 0.8, ease: 'easeInOut' },
+        transition: { duration: 0.6, ease: 'easeOut' },
         ...(displayPacman && facingAnimationMap[facing])
       };
 
